@@ -1,0 +1,13 @@
+.col-2 {
+    width: 10%;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.container .container-menu {
+    background: red;
+    color: deepskyblue;
+    line-height: 40px;
+    height: 40px;
+}

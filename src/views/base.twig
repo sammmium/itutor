@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Авторизация</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="{{ asset("css/main.css") }}">
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="left-side"></div>
+        <div class="main-content">
+            <div class="container-logo">@yield('logo')</div>
+            <div class="container-menu">@yield('menu')</div>
+            <div class="container-content">@yield('content')</div>
+            <div class="container-footer">@yield('footer')</div>
+        </div>
+        <div class="right-side"></div>
+    </div>
+</body>
+</html>
