@@ -1,5 +1,7 @@
 body {
     display: flex;
+    font-family: "JetBrains Mono";
+    font-size: 16px;
 }
 .col-12 {
     width: 100%;
@@ -37,9 +39,44 @@ body {
 .col-1 {
     width: 8.3%;
 }
-.content-container {
+.container {
     display: flex;
     justify-content: center;
     text-align: center;
-    background: orange;
+    width: 100%;
+}
+.container .main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.container .container-logo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.container .container-logo .logo {
+    font-size: 34px;
+    text-align: left;
+    height: 50px;
+    margin: 10px;
+}
+div.row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+}
+.container .main-content .container-footer {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    font-size: 20px;
+    font-style: italic;
+    color: #565353FF;
+}
+
+.error {
+    background: #FCB7BDFF;
+    border: 1px solid #FF0000;
 }

@@ -1,0 +1,116 @@
+{% extends 'base.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../../public/css/schedules.css">
+{#    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">#}
+    <link rel="stylesheet" href="../../public/css/jquery-ui.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="../../public/js/jquery-1.12.4.js"></script>
+    <script src="../../public/js/jquery-ui.js"></script>
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+            monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+            dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+            dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+            dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+    </script>
+    <script src="../../public/js/schedules.js"></script>
+{% endblock %}
+
+{#array (size=2)#}
+{#'events' =>#}
+{#array (size=2)#}
+{#0 =>#}
+{#array (size=7)#}
+{#'schedule_id' => string '1' (length=1)#}
+{#'contact_id' => string '1' (length=1)#}
+{#'subject_date' => string '2022-11-21' (length=10)#}
+{#'subject_time' => string '15:30' (length=5)#}
+{#'is_done' => string '0' (length=1)#}
+{#'work_description' => string '' (length=0)#}
+{#'subject_note' => string '' (length=0)#}
+{#1 =>#}
+{#array (size=7)#}
+{#'schedule_id' => string '3' (length=1)#}
+{#'contact_id' => string '1' (length=1)#}
+{#'subject_date' => string '2022-11-21' (length=10)#}
+{#'subject_time' => string '20:30' (length=5)#}
+{#'is_done' => string '0' (length=1)#}
+{#'work_description' => string '' (length=0)#}
+{#'subject_note' => string '' (length=0)#}
+{#'contacts' =>#}
+{#array (size=1)#}
+{#0 =>#}
+{#array (size=14)#}
+{#'contact_id' => string '1' (length=1)#}
+{#'parent_name' => string 'Петров Петр Иванович' (length=38)#}
+{#'parent_phone' => string '375294569871' (length=12)#}
+{#'pupil' => string 'Иван' (length=8)#}
+{#'description' => string '' (length=0)#}
+{#'rate' => string '21.00' (length=5)#}
+{#'create_at' => string '2022-11-18' (length=10)#}
+{#'update_at' => string '2022-11-19' (length=10)#}
+{#'restore_at' => null#}
+{#'is_archive' => string '0' (length=1)#}
+{#'balance_id' => string '1' (length=1)#}
+{#'current_value' => string '210.00' (length=6)#}
+{#'currency_id' => string '1' (length=1)#}
+{#'currency' => string 'USD' (length=3)#}
+
+{% block content %}
+    <div class="schedules">
+        <div class="row">
+            <div class="calendar col-6">
+                <div class="calendar-field">
+                    <form action="/schedules/select_date" name="schedule_calendar" method="post">
+                        <div id="datepicker"></div>
+                        <input type="hidden" id="datepicker_value" name="datepicker_value" value="{{ selected_date }}">
+                    </form>
+                </div>
+            </div>
+            <div class="day-schedule col-6">
+                <div class="row">
+                    <div class="title col-12">Расписание на день</div>
+                </div>
+
+                {% for event in events %}
+                    <div class="row day-schedule-item">
+                        <div class="pupil col-4">{{ event['pupil'] }}</div>
+                        <div class="time col-2">{{ event['subject_time'] }}</div>
+                        <div class="delete col-6">
+                            <div class="row">
+                                <a href="#" class="done-button">Проведено</a>
+                                <a href="#" class="delete-button">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="buttons">
+                    <form name="move_to_add_schedule" action="" method="post">
+                        <input type="hidden" id="datepicker_value" name="selected_date" value="{{ selected_date }}">
+                        <a href="#" class="add-schedule-button">Добавить</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,69 @@
+.container .main-content .content .schedules .day-schedule {
+    margin: 20px 0;
+}
+.container .main-content .content .schedules .day-schedule .title {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 700;
+    color: #000000;
+}
+.container .main-content .content .schedules .day-schedule .buttons {
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+    height: 52px;
+    margin: 10px 0;
+}
+/*.container .main-content .content .schedules .day-schedule .buttons .add-schedule-button {*/
+/*    border: 1px solid #cccccc;*/
+/*    text-align: center;*/
+/*    background: #eeeeee;*/
+/*    padding: 10px;*/
+/*    cursor: pointer;*/
+/*}*/
+.container .main-content .content .schedules .calendar-field {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+a.delete-button, a.done-button {
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+    margin: 0 10px;
+    padding: 10px;
+    width: 100px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+a.delete-button:hover {
+    background: #FCB7BDFF;
+    border: 1px solid #FF0000;
+}
+.container .main-content .content .schedules .day-schedule .day-schedule-item {
+    line-height: 30px;
+}
+.container .main-content .content .schedules .day-schedule .day-schedule-item .pupil,
+.container .main-content .content .schedules .day-schedule .day-schedule-item .time,
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons {
+    vertical-align: center;
+    padding: 10px;
+    height: 32px;
+    margin: 10px 0;
+}
+
+a.done-button:hover, a.add-schedule-button:hover {
+    background: lightgreen;
+}
+a.add-schedule-button {
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+    padding: 10px;
+    width: 240px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    height: 30px;
+}

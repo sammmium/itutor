@@ -1,1 +1,73 @@
-contacts index
+{# Список контактов #}
+{% extends 'base.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../../public/css/contacts.css">
+{% endblock %}
+
+{% block content %}
+    <div class="head-page">
+        <div class="title col-8">Список контактов</div>
+        <div class="buttons col-4">
+            <a href="/contacts/archive">Архив</a>
+            <a href="/contact/create">Добавить контакт</a>
+        </div>
+    </div>
+    <div class="body-page">
+        {% if contact_list|length > 0 %}
+            {% for contact in contact_list %}
+                <div class="contact-item">
+                    <div class="info">
+                        <div class="row">
+                            <div class="col-8 label-input">
+                                <label for="contact-parent">Родитель</label>
+                                <div id="contact-parent">{{ contact['parent_name'] }}</div>
+                            </div>
+                            <div class="col-4 label-input">
+                                <label for="contact-phone">Телефон</label>
+                                <div id="contact-phone">{{ contact['parent_phone'] }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 label-input">
+                                <label for="contact-pupil">Ученик</label>
+                                <div id="contact-pupil">{{ contact['pupil'] }}</div>
+                            </div>
+                            <div class="col-2 label-input">
+                                <label for="contact-balance">Баланс</label>
+                                <div id="contact-balance">{{ contact['current_value'] }}</div>
+                            </div>
+                            <div class="col-2 label-input">
+                                <label for="contact-balance">Тариф</label>
+                                <div id="contact-balance">{{ contact['rate'] }}</div>
+                            </div>
+                            <div class="col-2 label-input">
+                                <label for="contact-rate">Валюта</label>
+                                <div id="contact-rate">{{ contact['currency'] }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 label-input">
+                                <label for="contact-description">Заметки</label>
+                                <div id="contact-description">{{ contact['description'] }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <a href="contact/edit/{{ contact['contact_id'] }}" class="button-edit">Редактировать</a>
+                        <a href="contact/archive/{{ contact['contact_id'] }}" class="button-move-to-archive">Отправить в архив</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="contact-item">
+                <div class="info">
+                    <div class="row">
+                        Данные для отображения осутствуют
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

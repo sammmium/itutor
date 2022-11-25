@@ -2,9 +2,9 @@
 
 namespace src\Controllers;
 
-require_once 'Main.php';
+require_once 'MainController.php';
 
-class Dashboard extends Main
+class DashboardController extends MainController
 {
 	protected array $config;
 

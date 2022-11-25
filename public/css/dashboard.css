@@ -1,0 +1,9 @@
+.container .main-content .container-content {
+    display: flex;
+    width: 100%;
+}
+.container .main-content .container-content .content {
+    font-size: 20px;
+    text-align: justify;
+    margin: 10px;
+}

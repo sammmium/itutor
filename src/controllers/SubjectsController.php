@@ -2,9 +2,9 @@
 
 namespace src\Controllers;
 
-require_once 'Main.php';
+require_once 'MainController.php';
 
-class Subjects extends Main
+class SubjectsController extends MainController
 {
 	protected array $config;
 

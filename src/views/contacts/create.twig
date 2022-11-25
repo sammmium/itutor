@@ -1,1 +1,62 @@
-contacts create
+{# Создание нового контакта #}
+{% extends 'base.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../../public/css/contacts.css">
+{% endblock %}
+
+{% block content %}
+    <div class="head-page">
+        <div class="title col-12">Создание нового контакта</div>
+    </div>
+    <div class="body-page">
+        <div class="contact-item">
+            <form action="/contact/save" name="new_contact" method="post">
+            <div class="info">
+                <div class="row">
+                    <div class="col-8 label-input">
+                        <label for="contact-parent" title="Обязательное поле">Родитель *</label>
+                        <input type="text" name="parent_name" id="contact-parent" class="parent-name{% if errors['parent_name'] is defined %} error{% endif %}" placeholder="Фамилия, имя и отчество" value="{% if memo['parent_name'] is defined %}{{ memo['parent_name'] }}{% endif %}">
+                    </div>
+                    <div class="col-4 label-input">
+                        <label for="contact-phone" title="Обязательное поле">Телефон *</label>
+                        <input type="text" name="parent_phone" id="contact-phone" class="parent-phone{% if errors['parent_phone'] is defined %} error{% endif %}" placeholder="Контактный телефон" value="{% if memo['parent_phone'] is defined %}{{ memo['parent_phone'] }}{% endif %}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 label-input">
+                        <label for="contact-pupil" title="Обязательное поле">Ученик *</label>
+                        <input type="text" name="pupil" id="contact-pupil" class="pupil{% if errors['pupil'] is defined %} error{% endif %}" placeholder="Имя ученика" value="{% if memo['pupil'] is defined %}{{ memo['pupil'] }}{% endif %}">
+                    </div>
+                    <div class="col-2 label-input">
+                        <label for="contact-balance" title="Обязательное поле">Баланс *</label>
+                        <input type="text" name="current_value" id="contact-balance" class="current-value{% if errors['current_value'] is defined %} error{% endif %}" placeholder="Сумма баланса" value="{% if memo['current_value'] is defined %}{{ memo['current_value'] }}{% endif %}">
+                    </div>
+                    <div class="col-2 label-input">
+                        <label for="contact-rate" title="Обязательное поле">Тариф *</label>
+                        <input type="text" name="rate" id="contact-rate" class="rate{% if errors['rate'] is defined %} error{% endif %}" placeholder="Сумма тарифа" value="{% if memo['rate'] is defined %}{{ memo['rate'] }}{% endif %}">
+                    </div>
+                    <div class="col-2 label-input" title="Обязательное поле">
+                        <label for="contact-currency">Валюта *</label>
+                        <select name="currency_id" id="contact-currency">
+                            {% for currency in currencies %}
+                            <option value="{{ currency['currency_id'] }}"{% if memo['currency_id'] is defined %} selected{% endif %}>{{ currency['currency'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 label-input">
+                        <label for="contact-description" title="НЕобязательное поле">Заметки / Описание</label>
+                        <textarea name="description" id="contact-description" placeholder="Особенности ученика. Пожелания родителей. Цели и задачи.">{% if memo['description'] is defined %}{{ currency['description'] }}{% endif %}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <a href="#" class="new-contact-save">Сохранить</a>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

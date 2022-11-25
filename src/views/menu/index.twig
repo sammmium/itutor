@@ -1,3 +1,4 @@
-<a href="{{ menu['path'] }}" class="menu-item" name="{{ menu['alias'] }}">
-    <div class="menu-item">{{ menu['name'] }}</div>
-</a>
+{% for menu in menus %}
+    <a href="{{ menu['path'] }}"><div class="menu-item" data-alias="{{ menu['alias'] }}">{{ menu['name'] }}</div></a>
+{% endfor %}
+<input type="hidden" name="selected_menu_item" value="{{ selected_menu_item }}">

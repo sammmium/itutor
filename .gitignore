@@ -1,1 +1,6 @@
 /vendor/
+/public/js/jquery-1.12.4.js
+/public/js/jquery.min.js
+/public/js/jquery-ui.js
+/public/css/jquery-ui.css
+/public/css/fontawesome/
