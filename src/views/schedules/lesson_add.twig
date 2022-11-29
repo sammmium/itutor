@@ -54,27 +54,32 @@
                     {% for event in events %}
                         <div class="row">
                             <div class="day-schedule-item col-12">
-                                <div class="time col-2">{{ event['subject_time'] }}</div>
-                                <div class="pupil col-4">{{ event['pupil'] }}</div>
-                                <div class="buttons col-6">
-                                    <a href="/schedules/lesson/done/{{ event['schedule_id'] }}" class="done-button">Проведено</a>
-                                    <a href="/schedules/lesson/delete/{{ event['schedule_id'] }}" class="delete-button">Отменить</a>
-                                </div>
+                                <div class="time col-4">{{ event['subject_time'] }}</div>
+                                <div class="pupil col-8">{{ event['pupil'] }}</div>
                             </div>
                         </div>
                     {% endfor %}
-                {% else %}
-                    <div class="row">
-                        <div class="day-schedule-empty col-12">
-                            Данные для отображения осутствуют
-                        </div>
-                    </div>
                 {% endif %}
 
                 <div class="row">
+                    <div class="day-schedule-item col-12">
+                        <div class="time col-4">
+                            <input type="text" name="set_time" class="col-12" value="" placeholder="Время">
+                        </div>
+                        <div class="pupil col-8">
+                            <select name="set_item">
+                                {% for contact_item in contact_list %}
+                                    <option value="{{ contact_item['contact_id'] }}">{{ contact_item['pupil'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="buttons col-12">
-                        <a href="#" class="add-day-schedule-item">Добавить</a>
-                        <form action="/schedules/lesson/add" name="lesson_add" method="post">
+                        <a href="#" class="save-day-schedule-item">Сохранить</a>
+                        <form action="/schedules/lesson/create" name="lesson_create" method="post">
                             <input type="hidden" name="selected_date" value="{{ selected_date }}">
                         </form>
                     </div>

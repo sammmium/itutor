@@ -1,69 +1,93 @@
-.container .main-content .content .schedules .day-schedule {
+.container .main-content .content .schedules {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .main-content .content .schedules .calendar {
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
+
+.container .main-content .content .schedules .day-schedule {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+}
+
 .container .main-content .content .schedules .day-schedule .title {
-    font-size: 24px;
+    font-size: 26px;
     font-style: italic;
     font-weight: 700;
-    color: #000000;
+    text-align: center;
 }
+
+.container .main-content .content .schedules .day-schedule .day-schedule-empty {
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    color: #454545;
+}
+
 .container .main-content .content .schedules .day-schedule .buttons {
     display: flex;
     justify-content: right;
-    padding: 10px;
-    height: 52px;
-    margin: 10px 0;
-}
-/*.container .main-content .content .schedules .day-schedule .buttons .add-schedule-button {*/
-/*    border: 1px solid #cccccc;*/
-/*    text-align: center;*/
-/*    background: #eeeeee;*/
-/*    padding: 10px;*/
-/*    cursor: pointer;*/
-/*}*/
-.container .main-content .content .schedules .calendar-field {
-    display: flex;
-    justify-content: center;
 }
 
-
-
-a.delete-button, a.done-button {
+.container .main-content .content .schedules .day-schedule .buttons a.add-day-schedule-item {
     border: 1px solid #cccccc;
     background: #eeeeee;
     margin: 0 10px;
     padding: 10px;
-    width: 100px;
+    width: 160px;
     text-decoration: none;
     color: #000000;
     text-align: center;
-}
-a.delete-button:hover {
-    background: #FCB7BDFF;
-    border: 1px solid #FF0000;
-}
-.container .main-content .content .schedules .day-schedule .day-schedule-item {
-    line-height: 30px;
-}
-.container .main-content .content .schedules .day-schedule .day-schedule-item .pupil,
-.container .main-content .content .schedules .day-schedule .day-schedule-item .time,
-.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons {
-    vertical-align: center;
-    padding: 10px;
-    height: 32px;
-    margin: 10px 0;
 }
 
-a.done-button:hover, a.add-schedule-button:hover {
+.container .main-content .content .schedules .day-schedule .buttons a.add-day-schedule-item:hover {
     background: lightgreen;
 }
-a.add-schedule-button {
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .pupil,
+.container .main-content .content .schedules .day-schedule .day-schedule-item .time{
+    font-size: 26px;
+}
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons {
+    display: flex;
+    justify-content: right;
+}
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.done-button,
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.delete-button {
+    font-size: 16px;
+
     border: 1px solid #cccccc;
     background: #eeeeee;
+    margin: 0 10px;
     padding: 10px;
-    width: 240px;
+    width: 80px;
     text-decoration: none;
     color: #000000;
     text-align: center;
-    height: 30px;
 }
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.done-button:hover {
+    background: lightgreen;
+}
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.delete-button:hover {
+    background: #F3640BFF;
+}
+
+.container .main-content .content .schedules .day-schedule .day-schedule-item .time input[name="set_time"] {
+    font-size: 26px;
+}
+

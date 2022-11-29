@@ -70,10 +70,17 @@ return [
 		'action' => 'index',
 		'view' => 'schedules/index.twig',
 		'selected_menu_item' => 'schedules'
-	],'/schedules/select_date' => [
+	],
+	'/schedules/select_date' => [
 		'controller' => 'SchedulesController',
 		'action' => 'select_date',
 		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/add' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_add',
+		'view' => 'schedules/lesson_add.twig',
 		'selected_menu_item' => 'schedules'
 	],
 

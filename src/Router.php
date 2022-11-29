@@ -20,23 +20,19 @@ class Router
 		'selected_menu_item' => 'auth'
 	];
 
-	public function setParams(string $request_url, array $routes, array $config)
+	public function setParams(string $request_url, array $routes, array $config): void
 	{
 		$this->path = $request_url;
 		$this->routes = $routes;
 		$this->config = $config;
 	}
 
-	public function init()
+	public function init(): array
 	{
 		$result = [];
 
+		$id = 0;
 		foreach ($this->routes as $path => $data) {
-
-			// path = /contacts/edit/{id}
-			// $this->path = /contacts/edit/12
-
-			$id = 0;
 			$clearPath = '';
 			$pos = strpos($path, '{id}');
 			if ($pos !== false) {
@@ -58,7 +54,6 @@ class Router
 			}
 
 		}
-//			var_dump($this->path, $clearPath, $id);exit;
 
 		require_once 'controllers/' . $this->route['controller'] . '.php';
 		$pathController = '\\src\\Controllers\\' . $this->route['controller'];

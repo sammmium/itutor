@@ -34,8 +34,6 @@ class SchedulesController extends MainController
 		$model = new Contacts();
 		$content['contact_list'] = $model->getContactList();
 
-//		var_dump($content['contact_list']);exit;
-
 		return $this->getContent($content);
 	}
 
@@ -55,6 +53,25 @@ class SchedulesController extends MainController
 		$model = new Contacts();
 		$content['contact_list'] = $model->getContactList();
 
+		return $this->getContent($content);
+	}
+
+	public function lesson_add(): array
+	{
+		$content = [];
+		$content['selected_date'] = $_POST['selected_date'];
+
+		$filter = [
+			'subject_date' => $content['selected_date']
+		];
+
+		$model = new Schedules();
+		$content += $model->getData($filter);
+
+		$model = new Contacts();
+		$content['contact_list'] = $model->getContactList();
+
+//		var_dump($content['contact_list']);exit;
 		return $this->getContent($content);
 	}
 }
