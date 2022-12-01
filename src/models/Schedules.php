@@ -4,6 +4,7 @@ namespace src\models;
 
 require_once 'Base.php';
 include __DIR__ .'/../models/Contacts.php';
+include __DIR__ .'/../models/Balances.php';
 
 class Schedules extends Base
 {
@@ -89,11 +90,37 @@ class Schedules extends Base
 		}
 		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$id';";
 		$this->upd($query);
+
+		$this->declineBalance($id);
 	}
 
 	public function delete(array $data): void
 	{
 		$query = "delete from " . $this->table . " where id = '" . $data['id'] . "';";
 		$this->del($query);
+	}
+
+	private function declineBalance(int $id): void
+	{
+		$query = "select contact_id from " . $this->table . " where id = '" . $id . "';";
+		$schedule_result = $this->get($query);
+		$contact_id = $schedule_result[0]['contact_id'];
+
+		$model_contacts = new Contacts();
+		$contact_result = $model_contacts->getRate($contact_id);
+		$rate = $contact_result[0]['rate'];
+
+		$model_balances = new Balances();
+		$balance_result = $model_balances->getCurrentValue($contact_id);
+		$balance_id = $balance_result[0]['id'];
+		$current_value = $balance_result[0]['current_value'];
+
+		$declined_value = $current_value - $rate;
+
+		$model_balances = new Balances();
+		$model_balances->updateBalanceValue([
+			'id' => $balance_id,
+			'current_value' => $declined_value
+		]);
 	}
 }

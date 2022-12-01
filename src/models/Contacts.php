@@ -129,4 +129,10 @@ class Contacts extends Base
 		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$contact_id';";
 		$this->upd($query);
 	}
+
+	public function getRate(int $contactId): array
+	{
+		$query = "select rate from " . $this->table . " where id = '" . $contactId . "';";
+		return $this->get($query);
+	}
 }

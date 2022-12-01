@@ -51,4 +51,24 @@ class Balances extends Base
 		$query = "update " . $this->table . " set " . implode(', ', $values) . " where contact_id = '$contact_id';";
 		$this->upd($query);
 	}
+
+	public function getCurrentValue(int $contactId): array
+	{
+		$query = "select id, current_value from " . $this->table . " where contact_id = '" . $contactId . "';";
+		return $this->get($query);
+	}
+
+	public function updateBalanceValue(array $data): void
+	{
+		$values = [];
+		$id = $data['id'];
+		unset($data['id']);
+		foreach ($data as $key => $value) {
+			if ($this->isAvailableColumn($key)) {
+				$values[] = "$key = '" . $value . "'";
+			}
+		}
+		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$id';";
+		$this->upd($query);
+	}
 }
