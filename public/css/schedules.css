@@ -53,6 +53,17 @@
 .container .main-content .content .schedules .day-schedule .day-schedule-item {
     display: flex;
     justify-content: space-between;
+    /*padding: 5px 0;*/
+}
+
+.container .main-content .content .schedules .day-schedule .row {
+    border-bottom: 1px solid #454545;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.container .main-content .content .schedules .day-schedule .row:last-child {
+    border-bottom: none;
 }
 
 .container .main-content .content .schedules .day-schedule .day-schedule-item .pupil,
@@ -67,12 +78,11 @@
 
 .container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.done-button,
 .container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.delete-button {
-    font-size: 16px;
-
+    font-size: 14px;
     border: 1px solid #cccccc;
     background: #eeeeee;
     margin: 0 10px;
-    padding: 10px;
+    padding: 5px;
     width: 80px;
     text-decoration: none;
     color: #000000;
@@ -83,11 +93,42 @@
     background: lightgreen;
 }
 
+.container .main-content .content .schedules .day-schedule .day-schedule-item .buttons .done-text {
+    font-size: 26px;
+    color: green;
+    padding: 0 10px;
+}
+
 .container .main-content .content .schedules .day-schedule .day-schedule-item .buttons a.delete-button:hover {
     background: #F3640BFF;
 }
 
 .container .main-content .content .schedules .day-schedule .day-schedule-item .time input[name="set_time"] {
-    font-size: 26px;
+    font-size: 20px;
+    box-sizing: border-box;
 }
 
+.container .main-content .content .schedules .day-schedule .day-schedule-item .pupil select[name="set_contact"] {
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 1px 2px;
+}
+
+/*.container .main-content .content .schedules .day-schedule .day-schedule-item:first-child {*/
+/*    border-top: 1px solid #454545;*/
+/*}*/
+
+.container .main-content .content .schedules .day-schedule .buttons a.save-day-schedule-item {
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+    margin: 0 10px;
+    padding: 10px;
+    width: 160px;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+}
+
+.container .main-content .content .schedules .day-schedule .buttons a.save-day-schedule-item:hover {
+    background: lightgreen;
+}

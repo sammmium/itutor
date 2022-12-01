@@ -83,6 +83,26 @@ return [
 		'view' => 'schedules/lesson_add.twig',
 		'selected_menu_item' => 'schedules'
 	],
+	'/schedules/lesson/create' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_create',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/done/{id}' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_done',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/delete/{id}' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_delete',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+
+
 
 	'/subjects' => [
 		'controller' => 'SubjectsController',

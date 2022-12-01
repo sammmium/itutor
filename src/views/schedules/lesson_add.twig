@@ -10,6 +10,7 @@
     {{ parent() }}
     <script src="../../public/js/jquery-1.12.4.js"></script>
     <script src="../../public/js/jquery-ui.js"></script>
+    <script src="../../public/js/jquery.maskedinput.min.js"></script>
     <script>
         /* Локализация datepicker */
         $.datepicker.regional['ru'] = {
@@ -55,7 +56,7 @@
                         <div class="row">
                             <div class="day-schedule-item col-12">
                                 <div class="time col-4">{{ event['subject_time'] }}</div>
-                                <div class="pupil col-8">{{ event['pupil'] }}</div>
+                                <div class="pupil col-8">{{ event['pupil'] }} ({{ event['parent_name'] }})</div>
                             </div>
                         </div>
                     {% endfor %}
@@ -64,12 +65,12 @@
                 <div class="row">
                     <div class="day-schedule-item col-12">
                         <div class="time col-4">
-                            <input type="text" name="set_time" class="col-12" value="" placeholder="Время">
+                            <input type="text" name="set_time" class="col-6" value="">
                         </div>
                         <div class="pupil col-8">
-                            <select name="set_item">
+                            <select name="set_contact" class="col-10">
                                 {% for contact_item in contact_list %}
-                                    <option value="{{ contact_item['contact_id'] }}">{{ contact_item['pupil'] }}</option>
+                                    <option value="{{ contact_item['contact_id'] }}">{{ contact_item['pupil'] }} ({{ contact_item['parent_name'] }})</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -80,7 +81,9 @@
                     <div class="buttons col-12">
                         <a href="#" class="save-day-schedule-item">Сохранить</a>
                         <form action="/schedules/lesson/create" name="lesson_create" method="post">
-                            <input type="hidden" name="selected_date" value="{{ selected_date }}">
+                            <input type="hidden" name="subject_date" value="{{ selected_date }}">
+                            <input type="hidden" name="contact_id" value="">
+                            <input type="hidden" name="subject_time" value="">
                         </form>
                     </div>
                 </div>

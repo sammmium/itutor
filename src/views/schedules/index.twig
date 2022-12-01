@@ -10,6 +10,7 @@
     {{ parent() }}
     <script src="../../public/js/jquery-1.12.4.js"></script>
     <script src="../../public/js/jquery-ui.js"></script>
+    <script src="../../public/js/jquery.maskedinput.min.js"></script>
     <script>
         /* Локализация datepicker */
         $.datepicker.regional['ru'] = {
@@ -55,10 +56,14 @@
                         <div class="row">
                             <div class="day-schedule-item col-12">
                                 <div class="time col-2">{{ event['subject_time'] }}</div>
-                                <div class="pupil col-4">{{ event['pupil'] }}</div>
-                                <div class="buttons col-6">
-                                    <a href="/schedules/lesson/done/{{ event['schedule_id'] }}" class="done-button">Проведено</a>
-                                    <a href="/schedules/lesson/delete/{{ event['schedule_id'] }}" class="delete-button">Отменить</a>
+                                <div class="pupil col-6">{{ event['pupil'] }} ({{ event['parent_name'] }})</div>
+                                <div class="buttons col-4">
+                                    {% if event['is_done'] == 0 %}
+                                        <a href="/schedules/lesson/done/{{ event['schedule_id'] }}" class="done-button">Проведено</a>
+                                        <a href="/schedules/lesson/delete/{{ event['schedule_id'] }}" class="delete-button">Отменить</a>
+                                    {% else %}
+                                        <div class="done-text">Проведено</div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

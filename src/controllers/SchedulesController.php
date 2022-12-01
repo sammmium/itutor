@@ -71,7 +71,45 @@ class SchedulesController extends MainController
 		$model = new Contacts();
 		$content['contact_list'] = $model->getContactList();
 
-//		var_dump($content['contact_list']);exit;
 		return $this->getContent($content);
+	}
+
+	public function lesson_create(): void
+	{
+		$rules = [
+			'subject_date' => ['type' => 'text', 'required' => true],
+			'contact_id' => ['type' => 'numeric', 'required' => true],
+			'subject_time' => ['type' => 'text', 'required' => true]
+		];
+		$data = $_POST;
+		if ($this->validate($data, $rules)) {
+			$model = new Schedules();
+			$model->createLesson($data);
+		}
+	}
+
+	public function lesson_done(int $id): void
+	{
+		$model = new Schedules();
+		$model->update([
+			'id' => $id,
+			'is_done' => '1'
+		]);
+		$model = null;
+
+		header('Location: /schedules');
+		exit;
+	}
+
+	public function lesson_delete(int $id): void
+	{
+		$model = new Schedules();
+		$model->delete([
+			'id' => $id
+		]);
+		$model = null;
+
+		header('Location: /schedules');
+		exit;
 	}
 }

@@ -28,6 +28,7 @@ class Schedules extends Base
 				sc.id as schedule_id,
 				sc.contact_id as contact_id,
 				cn.pupil as pupil,
+				cn.parent_name as parent_name,
 				sc.subject_date as subject_date,
 				sc.subject_time as subject_time,
 				sc.is_done as is_done,
@@ -35,7 +36,8 @@ class Schedules extends Base
 				sc.subject_note as subject_note
 			from " . $this->table . " as sc
 			left join contacts as cn on sc.contact_id = cn.id
-			where " . $this->getPreparedConditions($filter);
+			where " . $this->getPreparedConditions($filter) . " 
+			order by sc.subject_time asc;";
 
 		$events = $this->get($query);
 
@@ -56,8 +58,42 @@ class Schedules extends Base
 			}
 		}
 
-//		var_dump($result);exit;
-
 		return $result;
+	}
+
+	public function createLesson(array $data): int
+	{
+		$columns = [];
+		$values = [];
+		foreach ($data as $key => $value) {
+			if ($this->isAvailableColumn($key)) {
+				$columns[] = $key;
+				$values[] = ($key == 'subject_date') ? $this->getTransformedDate($value) : $value;
+			}
+		}
+		$columns[] = 'is_done';
+		$values[] = 0;
+		$query = "insert into " . $this->table . "(" . implode(', ', $columns) . ")  values('" . implode("', '", $values) . "');";
+		return $this->set($query);
+	}
+
+	public function update(array $data): void
+	{
+		$values = [];
+		$id = $data['id'];
+		unset($data['id']);
+		foreach ($data as $key => $value) {
+			if ($this->isAvailableColumn($key)) {
+				$values[] = "$key = '" . $value . "'";
+			}
+		}
+		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$id';";
+		$this->upd($query);
+	}
+
+	public function delete(array $data): void
+	{
+		$query = "delete from " . $this->table . " where id = '" . $data['id'] . "';";
+		$this->del($query);
 	}
 }
