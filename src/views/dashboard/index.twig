@@ -1,5 +1,59 @@
 {% extends 'base.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../../public/css/dashboard.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="../../public/js/jquery-1.12.4.js"></script>
+    <script src="../../public/js/jquery-ui.js"></script>
+    <script src="../../public/js/jquery.maskedinput.min.js"></script>
+    <script src="../../public/js/dashboard.js"></script>
+{% endblock %}
+
 {% block content %}
-    Содержимое
+    <div class="dashboard">
+        <div class="row">
+            <div class="dashboard-title col-12">Общие сведения</div>
+        </div>
+
+        <div class="row">
+            <div class="dashboard-table col-12">
+                <div class="row">
+                    <div class="contacts col-12">
+                        <div class="row">
+                            <div class="title-block">Количество клиентов:</div>
+                        </div>
+                        <div class="row">
+                            <div class="active-contacts">активных: {{ active_clients }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="archive-contacts">архивных: {{ archive_clients }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                {#                    На балансе:#}
+                {#                    * 		20000 BYN#}
+                {#                    * 		15000 USD#}
+                {#                    * 		80000 RUB#}
+                <div class="row">
+                    <div class="balances col-12">
+                        <div class="row">
+                            <div class="title-block">На балансе:</div>
+                        </div>
+                        {% for balance_item in balances %}
+                            <div class="row">
+                                <div class="balance-item col-12">
+                                    {{ balance_item['current_value'] }} {{ balance_item['currency'] }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

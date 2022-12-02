@@ -135,4 +135,17 @@ class Contacts extends Base
 		$query = "select rate from " . $this->table . " where id = '" . $contactId . "';";
 		return $this->get($query);
 	}
+
+	public function getDashboardData(): array
+	{
+		$result = [];
+
+		$query = "select count(id) as active_clients from " . $this->table . " where is_archive = '0';";
+		$result += $this->get($query)[0];
+
+		$query = "select count(id) as archive_clients from " . $this->table . " where is_archive = '1';";
+		$result += $this->get($query)[0];
+
+		return $result;
+	}
 }
