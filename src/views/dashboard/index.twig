@@ -15,43 +15,40 @@
 
 {% block content %}
     <div class="dashboard">
-        <div class="row">
-            <div class="dashboard-title col-12">Общие сведения</div>
-        </div>
+        <div class="dashboard-title col-12">Общие сведения</div>
 
-        <div class="row">
-            <div class="dashboard-table col-12">
-                <div class="row">
-                    <div class="contacts col-12">
-                        <div class="row">
-                            <div class="title-block">Количество клиентов:</div>
-                        </div>
-                        <div class="row">
-                            <div class="active-contacts">активных: {{ active_clients }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="archive-contacts">архивных: {{ archive_clients }}</div>
-                        </div>
-                    </div>
+        <div class="dashboard-table col-12">
+            <div class="contacts col-12">
+                <div class="title-block">Клиенты</div>
+                <div class="active-contacts">
+                    <div class="col-6 label">активные</div>
+                    <div class="col-6 value">{{ active_clients }}</div>
                 </div>
+                <div class="archive-contacts">
+                    <div class="col-6 label">архивные</div>
+                    <div class="col-6 value">{{ archive_clients }}</div>
+                </div>
+            </div>
 
-                {#                    На балансе:#}
-                {#                    * 		20000 BYN#}
-                {#                    * 		15000 USD#}
-                {#                    * 		80000 RUB#}
-                <div class="row">
-                    <div class="balances col-12">
-                        <div class="row">
-                            <div class="title-block">На балансе:</div>
-                        </div>
-                        {% for balance_item in balances %}
-                            <div class="row">
-                                <div class="balance-item col-12">
-                                    {{ balance_item['current_value'] }} {{ balance_item['currency'] }}
-                                </div>
-                            </div>
-                        {% endfor %}
+            <div class="balances col-12">
+                <div class="title-block">На балансе</div>
+                {% for balance_item in balances %}
+                    <div class="balance-item col-12">
+                        <div class="col-6 label">{{ balance_item['currency'] }}</div>
+                        <div class="col-6 value">{{ balance_item['current_value'] }}</div>
                     </div>
+                {% endfor %}
+            </div>
+
+            <div class="lessons col-12">
+                <div class="title-block">Занятия</div>
+                <div class="lesson-item col-12">
+                    <div class="col-6 label">Проведены</div>
+                    <div class="col-6 value">{{ lessons['finished_lessons'] }}</div>
+                </div>
+                <div class="lesson-item col-12">
+                    <div class="col-6 label">Запланированы</div>
+                    <div class="col-6 value">{{ lessons['planned_lessons'] }}</div>
                 </div>
             </div>
         </div>

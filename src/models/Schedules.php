@@ -123,4 +123,17 @@ class Schedules extends Base
 			'current_value' => $declined_value
 		]);
 	}
+
+	public function getDashboardData(): array
+	{
+		$result = [];
+
+		$query = "select count(id) as planned_lessons from " . $this->table . " where is_done = '0';";
+		$result['lessons']['planned_lessons'] = $this->get($query)[0]['planned_lessons'];
+
+		$query = "select count(id) as finished_lessons from " . $this->table . " where is_done = '1';";
+		$result['lessons']['finished_lessons'] = $this->get($query)[0]['finished_lessons'];
+
+		return $result;
+	}
 }

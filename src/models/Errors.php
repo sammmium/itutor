@@ -48,6 +48,6 @@ class Errors extends Base
 	{
 		$hashedKey = md5($key);
 		$query = "delete from " . $this->table . " where error_key = '$hashedKey';";
-		$this->delete($query);
+		$this->del($query);
 	}
 }

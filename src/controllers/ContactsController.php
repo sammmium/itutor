@@ -71,6 +71,8 @@ class ContactsController extends MainController
 
 		$data = $_POST;
 
+//		var_dump($data);exit;
+
 		if ($this->validate($data, $rules)) {
 			$model = new Contacts();
 			$contact_id = $model->store($data);

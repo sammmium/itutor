@@ -53,7 +53,6 @@
 .container .main-content .content .schedules .day-schedule .day-schedule-item {
     display: flex;
     justify-content: space-between;
-    /*padding: 5px 0;*/
 }
 
 .container .main-content .content .schedules .day-schedule .row {

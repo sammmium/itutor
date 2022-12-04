@@ -68,6 +68,6 @@ class Memo extends Base implements iMemo
 	{
 		$hashedKey = md5($key);
 		$query = "delete from " . $this->table . " where memo_key = '$hashedKey';";
-		$this->delete($query);
+		$this->del($query);
 	}
 }

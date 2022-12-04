@@ -42,10 +42,11 @@ class DashboardController extends MainController
 		$contacts_model = new Contacts();
 		$content += $contacts_model->getDashboardData();
 
-		$schedules_model = new Schedules();
-
 		$balances_model = new Balances();
 		$content += $balances_model->getDashboardData();
+
+		$schedules_model = new Schedules();
+		$content += $schedules_model->getDashboardData();
 
 //		var_dump($content);exit;
 
