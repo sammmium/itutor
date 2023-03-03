@@ -48,7 +48,7 @@ class Base
 		$this->disconnect();
 	}
 
-	protected function delete(string $query): void
+	protected function del(string $query): void
 	{
 		$this->connect();
 		$this->execute($query);

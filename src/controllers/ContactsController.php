@@ -63,13 +63,15 @@ class ContactsController extends MainController
 			'parent_name' => ['type' => 'text', 'required' => true],
 			'parent_phone' => ['type' => 'numeric', 'required' => true],
 			'pupil' => ['type' => 'text', 'required' => true],
-			'current_value' => ['type' => 'numeric', 'required' => true],
+			'current_value' => ['type' => 'numeric', 'required' => false],
 			'rate' => ['type' => 'numeric', 'required' => true],
 			'currency_id' => ['type' => 'numeric', 'required' => true],
 			'description' => ['type' => 'text', 'required' => false]
 		];
 
 		$data = $_POST;
+
+//		var_dump($data);exit;
 
 		if ($this->validate($data, $rules)) {
 			$model = new Contacts();
@@ -114,7 +116,7 @@ class ContactsController extends MainController
 			'parent_name' => ['type' => 'text', 'required' => true],
 			'parent_phone' => ['type' => 'numeric', 'required' => true],
 			'pupil' => ['type' => 'text', 'required' => true],
-			'current_value' => ['type' => 'numeric', 'required' => true],
+			'current_value' => ['type' => 'numeric', 'required' => false],
 			'rate' => ['type' => 'numeric', 'required' => true],
 			'currency_id' => ['type' => 'numeric', 'required' => true],
 			'description' => ['type' => 'text', 'required' => false]

@@ -51,4 +51,39 @@ class Balances extends Base
 		$query = "update " . $this->table . " set " . implode(', ', $values) . " where contact_id = '$contact_id';";
 		$this->upd($query);
 	}
+
+	public function getCurrentValue(int $contactId): array
+	{
+		$query = "select id, current_value, currency_id from " . $this->table . " where contact_id = '" . $contactId . "';";
+		return $this->get($query)[0];
+	}
+
+	public function updateBalanceValue(array $data): void
+	{
+		$values = [];
+		$id = $data['id'];
+		unset($data['id']);
+		foreach ($data as $key => $value) {
+			if ($this->isAvailableColumn($key)) {
+				$values[] = "$key = '" . $value . "'";
+			}
+		}
+		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$id';";
+		$this->upd($query);
+	}
+
+	public function getDashboardData(): array
+	{
+		$result = [];
+
+		$query = "select 
+				round(sum(bl.current_value / 100), 2) as current_value, 
+				cr.currency as currency 
+			from balances as bl 
+			inner join currencies as cr on bl.currency_id = cr.id 
+			group by bl.currency_id;";
+		$result['balances'] = $this->get($query);
+
+		return $result;
+	}
 }

@@ -70,9 +70,34 @@ return [
 		'action' => 'index',
 		'view' => 'schedules/index.twig',
 		'selected_menu_item' => 'schedules'
-	],'/schedules/select_date' => [
+	],
+	'/schedules/select_date' => [
 		'controller' => 'SchedulesController',
 		'action' => 'select_date',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/add' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_add',
+		'view' => 'schedules/lesson_add.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/create' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_create',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/done/{id}' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_done',
+		'view' => 'schedules/index.twig',
+		'selected_menu_item' => 'schedules'
+	],
+	'/schedules/lesson/delete/{id}' => [
+		'controller' => 'SchedulesController',
+		'action' => 'lesson_delete',
 		'view' => 'schedules/index.twig',
 		'selected_menu_item' => 'schedules'
 	],
@@ -82,6 +107,19 @@ return [
 		'action' => 'index',
 		'view' => 'subjects/index.twig',
 		'selected_menu_item' => 'subjects'
+	],
+
+	'/reports' => [
+		'controller' => 'ReportsController',
+		'action' => 'index',
+		'view' => 'reports/index.twig',
+		'selected_menu_item' => 'reports'
+	],
+	'/reports/filter' => [
+		'controller' => 'ReportsController',
+		'action' => 'filter',
+		'view' => 'reports/filter.twig',
+		'selected_menu_item' => 'reports'
 	]
 
 ];
