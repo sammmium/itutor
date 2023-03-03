@@ -5,6 +5,7 @@ namespace src\models;
 require_once 'Base.php';
 include __DIR__ .'/../models/Contacts.php';
 include __DIR__ .'/../models/Balances.php';
+include __DIR__ .'/../models/Revenues.php';
 
 class Schedules extends Base
 {
@@ -112,16 +113,23 @@ class Schedules extends Base
 
 		$model_balances = new Balances();
 		$balance_result = $model_balances->getCurrentValue($contact_id);
-		$balance_id = $balance_result[0]['id'];
-		$current_value = $balance_result[0]['current_value'];
+		$balance_id = $balance_result['id'];
+		$current_value = $balance_result['current_value'];
+		$currency_id = $balance_result['currency_id'];
 
-		$declined_value = $current_value - $rate;
+		$model_revenues = new Revenues();
+		$model_revenues->addRevenue($id, $currency_id, $rate);
 
-		$model_balances = new Balances();
-		$model_balances->updateBalanceValue([
-			'id' => $balance_id,
-			'current_value' => $declined_value
-		]);
+
+		if ($rate < $current_value) {
+			$declined_value = $current_value - $rate;
+
+			$model_balances = new Balances();
+			$model_balances->updateBalanceValue([
+				'id' => $balance_id,
+				'current_value' => $declined_value
+			]);
+		}
 	}
 
 	public function getDashboardData(): array
@@ -133,6 +141,53 @@ class Schedules extends Base
 
 		$query = "select count(id) as finished_lessons from " . $this->table . " where is_done = '1';";
 		$result['lessons']['finished_lessons'] = $this->get($query)[0]['finished_lessons'];
+
+		return $result;
+	}
+
+	public function getSubjectList(array $filter = []): array
+	{
+		$result = [];
+		
+		if (count($filter) && $filter['selected_contact'] == 'all') {
+			return $result;
+		}
+
+		$query = "select
+				id as subject_id,
+				subject_date,
+				work_description,
+				subject_note
+			from subjects as sb
+			where 
+				year(subject_date) = '" . $filter['selected_period'] . "' 
+				and contact_id = '" . $filter['selected_contact'] . "';";
+
+		$subjects = $this->get($query);
+
+		$result['subjects'] = $subjects;
+
+		$result['subject_count'] = $this->getSubjectCount($subjects);
+
+		return  $result;
+	}
+
+	public function getSubjectCount(array $subjects = []): int
+	{
+		return count($subjects);
+	}
+
+	public function getSubjectPeriodRevenue(array $subjects = []): array
+	{
+		$result = [];
+
+		$subjectIdList = [];
+		foreach ($subjects as $subject) {
+			$subjectIdList[] = $subject['subject_id'];
+		}
+		
+		$model_revenues = new Revenues();
+
 
 		return $result;
 	}

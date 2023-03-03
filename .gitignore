@@ -4,3 +4,5 @@
 /public/js/jquery-ui.js
 /public/css/jquery-ui.css
 /public/css/fontawesome/
+.idea/
+/logs/events.log

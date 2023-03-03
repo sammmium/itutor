@@ -54,8 +54,8 @@ class Balances extends Base
 
 	public function getCurrentValue(int $contactId): array
 	{
-		$query = "select id, current_value from " . $this->table . " where contact_id = '" . $contactId . "';";
-		return $this->get($query);
+		$query = "select id, current_value, currency_id from " . $this->table . " where contact_id = '" . $contactId . "';";
+		return $this->get($query)[0];
 	}
 
 	public function updateBalanceValue(array $data): void

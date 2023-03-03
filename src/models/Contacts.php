@@ -2,7 +2,10 @@
 
 namespace src\models;
 
+use src\Models\FileLogger;
+
 require_once 'Base.php';
+require_once 'FileLogger.php';
 
 class Contacts extends Base
 {
@@ -128,6 +131,9 @@ class Contacts extends Base
 		$values[] = "update_at = '" . date('Y-m-d') . "'";
 		$query = "update " . $this->table . " set " . implode(', ', $values) . " where id = '$contact_id';";
 		$this->upd($query);
+
+		$logger = new FileLogger();
+		$logger->info("Контакт #$contact_id обновлен");
 	}
 
 	public function getRate(int $contactId): array

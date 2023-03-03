@@ -102,13 +102,24 @@ return [
 		'selected_menu_item' => 'schedules'
 	],
 
-
-
 	'/subjects' => [
 		'controller' => 'SubjectsController',
 		'action' => 'index',
 		'view' => 'subjects/index.twig',
 		'selected_menu_item' => 'subjects'
+	],
+
+	'/reports' => [
+		'controller' => 'ReportsController',
+		'action' => 'index',
+		'view' => 'reports/index.twig',
+		'selected_menu_item' => 'reports'
+	],
+	'/reports/filter' => [
+		'controller' => 'ReportsController',
+		'action' => 'filter',
+		'view' => 'reports/filter.twig',
+		'selected_menu_item' => 'reports'
 	]
 
 ];

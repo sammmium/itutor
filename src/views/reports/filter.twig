@@ -1,0 +1,63 @@
+{# Отчеты #}
+{% extends 'base.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../../public/css/reports.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="../../public/js/reports.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="reports">
+        <div class="reports-title col-12">Отчеты</div>
+
+        <div class="reports-filter col-12">
+            <div class="period-selector col-5">
+                <select name="period">
+                    {% for period in periods %}
+                        <option value="{{ period['key'] }}">{{ period['value'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="contact-selector col-7">
+                <select name="contact">
+                    {% for contact in contacts %}
+                        <option value="{{ contact['key'] }}">{{ contact['value'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form">
+                <form name="filter_reports" action="/reports/filter" method="post">
+                    <input type="hidden" name="selected_period" value="">
+                    <input type="hidden" name="selected_contact" value="">
+                </form>
+            </div>
+        </div>
+
+        <div class="reports-tables col-12">
+            <div class="table-total-title col-12">
+                Общий доход
+            </div>
+            {% for total in totals %}
+            <div class="table-total col-12">
+                <div class="col-6 label">{{ total['currency'] }}</div>
+                <div class="col-6 value">{{ total['total_revenue'] }}</div>
+            </div>
+            {% endfor %}
+            
+            <div class="table-total-title col-12">
+                Доход по периодам
+            </div>
+            
+            <div class="table-total-title col-12">
+                Доход по контактам
+            </div>
+        </div>
+    </div>
+{% endblock %}
